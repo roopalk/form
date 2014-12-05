@@ -1,0 +1,77 @@
+
+<html>
+<head>
+<script src = "http://code.jquery.com/jquery-2.1.1.js"></script>
+</head>
+<body>
+
+<form class="cmxform" id="commentform" method="get" action=" ">
+   <fieldset>
+      <legend>Please provide your name, email address (won't be published) and a comment</legend>
+      <p>
+	 <label for="cname">Name (required, at least 2 characters)</label>
+	 <input id="cname" name="name" minlength="2" type="text" required/>
+       </p>
+       <p>
+	 <label for="cemail">E-Mail (required)</label>
+	 <input id="cemail" type="email" name="email" required/>
+       </p>
+       <p>
+	 <label for="curl">URL (optional)</label>
+	 <input id="curl" type="url" name="url"/>
+       </p>
+       <p>
+	 <label for="ccomment">Your comment (required)</label>
+	 <textarea id="ccomment" name="comment" required></textarea>
+       </p>
+       <p>
+	 <input	class="submit" type="submit" value="Submit"/>
+       </p>
+    </fieldset>
+ </form>
+ <script>
+ 
+ $(document).ready(function($,W,D){
+ 	var IS117form = {};
+ 	IS117form = 
+ 	{
+ 		setupFormValidation: function()
+		{
+	
+ 			$("#commentForm").validate({
+ 			rules:{
+				name: "required",
+				email:{
+					required: true,
+					email: true
+					},
+				url:{
+					optional: true,
+					},
+				comment:{
+					required: true,
+					maxlength: 1000,
+					},
+				},
+			messages:{
+				name: "Enter your name",
+				email: "Enter your email",
+				url: "Please enter a valid url",
+				comment: "Please enter a comment",
+				},
+			submitHandler: function(form){
+				form.submit();
+				}
+	
+			});
+		}); 
+ 		
+		$(D).ready(function($){
+			IS117form.util.setuoFormValidation();
+			});
+
+		})(jQuery, window, document);
+ 
+ </script>
+</body>
+
